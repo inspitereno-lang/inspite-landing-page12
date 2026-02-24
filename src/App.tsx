@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Header from './sections/Header';
 import Hero from './sections/Hero';
+import BioEnable from './sections/BioEnable';
 import Stats from './sections/Stats';
 import AIProductDevelopment from './sections/AIProductDevelopment';
 import Services from './sections/Services';
@@ -17,6 +18,7 @@ import SmoothScroll from './components/SmoothScroll';
 import ServicePage from './pages/ServicePage';
 import IndustryPage from './pages/IndustryPage';
 import AIProductLabPage from './pages/AIProductLabPage';
+import BioEnablePage from './pages/BioEnablePage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,6 +31,7 @@ function HomePage() {
           <Hero />
           <Stats />
           <AIProductDevelopment />
+          <BioEnable />
           <Services />
           <Industries />
           <Testimonials />
@@ -68,6 +71,7 @@ function App() {
       <Route path="/services/:slug" element={<ServicePage />} />
       <Route path="/industries/:slug" element={<IndustryPage />} />
       <Route path="/ai-product-lab" element={<AIProductLabPage />} />
+      <Route path="/bioenable" element={<BioEnablePage />} />
     </Routes>
   );
 }

@@ -172,12 +172,12 @@ export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: strin
             <ParticleDots />
 
             {/* ── Hero Photo Container ── */}
-            <div className="absolute inset-0 z-0 flex flex-col lg:flex-row justify-end lg:justify-end items-center lg:items-center pointer-events-none">
-                <div className="w-full h-[40vh] lg:h-full lg:w-1/2 relative right-0 lg:right-[5%] mt-auto lg:mt-0 pointer-events-auto opacity-0 animate-[scaleIn_1s_ease-out_1s_forwards] translate-y-20 lg:translate-y-0 flex items-center justify-center">
+            <div className="absolute inset-0 z-0 flex flex-col lg:flex-row justify-end lg:justify-end items-center lg:items-center pointer-events-none overflow-hidden">
+                <div className="hidden lg:flex w-full lg:h-full lg:w-[50%] relative mt-auto lg:mt-0 pointer-events-auto opacity-0 animate-[scaleIn_1s_ease-out_1s_forwards] items-center justify-center">
                     <motion.img
                         src="/hero-candid-photo.png"
-                        alt="Hero Professional"
-                        className="w-[85%] sm:w-[75%] lg:w-[85%] max-w-[600px] h-auto object-contain drop-shadow-[0_0_40px_rgba(56,152,236,0.3)]"
+                        alt="Infynix Professional"
+                        className="w-[75%] max-w-[500px] h-auto object-contain drop-shadow-[0_0_40px_rgba(56,152,236,0.3)]"
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1, y: [0, -20, 0] }}
                         transition={{ delay: 0.5, duration: 6, opacity: { duration: 1 }, scale: { duration: 1 }, y: { repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", duration: 8 } }}
@@ -186,15 +186,15 @@ export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: strin
             </div>
 
             {/* ── Main Content ── */}
-            <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-10 flex flex-col justify-start lg:justify-center items-start text-left min-h-screen pt-[12vh] lg:pt-20 pb-16 pointer-events-none">
-                <div className="max-w-[700px] pointer-events-auto flex flex-col items-start text-left">
+            <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:pl-16 xl:pl-24 flex flex-col justify-center items-start text-left min-h-screen pt-24 sm:pt-28 lg:pt-20 pb-8 sm:pb-16 pointer-events-none">
+                <div className="w-full lg:max-w-[700px] pointer-events-auto flex flex-col items-start text-left">
                     {/* Main Title */}
-                    <div className="mb-4 sm:mb-6 overflow-hidden w-full lg:w-auto">
+                    <div className="mb-4 sm:mb-6 overflow-hidden w-full">
                         <motion.h1
                             initial={{ y: 80, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[1.75rem] leading-[1.05] sm:text-6xl md:text-8xl lg:text-[4.8rem] font-black tracking-tighter"
+                            className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.8rem] leading-[1.08] font-black tracking-tighter"
                         >
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70">
                                 {title.split(" ").slice(0, 2).join(" ")}
@@ -211,7 +211,7 @@ export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: strin
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.9, duration: 0.9 }}
-                        className="text-[13px] sm:text-lg md:text-xl text-white/50 max-w-2xl leading-[1.6] font-light mb-8 sm:mb-14 w-full pr-4 sm:pr-0"
+                        className="text-sm sm:text-base md:text-lg lg:text-xl text-white/50 max-w-2xl leading-relaxed sm:leading-[1.7] font-light mb-6 sm:mb-10 lg:mb-14 w-full"
                     >
                         We design intelligent digital solutions that reduce manual effort, save time, and help your business run faster and smarter. Bring your vision to life and elevate your business to extraordinary success.
                     </motion.p>
@@ -221,21 +221,21 @@ export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: strin
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 1.2, duration: 0.8 }}
-                        className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 items-start sm:items-center justify-start mb-10 sm:mb-16 w-full max-w-[200px] sm:max-w-none"
+                        className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-8 sm:mb-16"
                     >
                         {/* Primary CTA */}
                         <motion.a
                             href="#contact"
                             whileHover={{ scale: 1.04, y: -2 }}
                             whileTap={{ scale: 0.97 }}
-                            className="group relative inline-flex items-center justify-center sm:justify-start w-full sm:w-auto gap-2 sm:gap-3 px-5 sm:px-8 py-2.5 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-[13px] sm:text-base text-white overflow-hidden shadow-[0_0_30px_rgba(255,123,0,0.15)] hover:shadow-[0_0_60px_rgba(255,123,0,0.4)] transition-shadow duration-500"
+                            className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base text-white overflow-hidden shadow-[0_0_30px_rgba(255,123,0,0.15)] hover:shadow-[0_0_60px_rgba(255,123,0,0.4)] transition-shadow duration-500"
                             style={{
                                 background: "linear-gradient(135deg, #FF7B00 0%, #FFB366 50%, #FF7B00 100%)",
                                 backgroundSize: "200% 200%",
                             }}
                         >
                             <span>Start Your Project</span>
-                            <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
+                            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
                             {/* Shine sweep */}
                             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
                         </motion.a>
@@ -245,13 +245,27 @@ export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: strin
                             href="#services"
                             whileHover={{ scale: 1.04, y: -2 }}
                             whileTap={{ scale: 0.97 }}
-                            className="group relative inline-flex items-center justify-center sm:justify-start w-full sm:w-auto gap-2 sm:gap-3 px-5 sm:px-8 py-2.5 sm:py-4 rounded-xl sm:rounded-2xl font-medium text-[13px] sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-[#3898EC]/50 backdrop-blur-md bg-white/[0.04] hover:bg-[#3898EC]/10 transition-all duration-300"
+                            className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-[#3898EC]/50 backdrop-blur-md bg-white/[0.04] hover:bg-[#3898EC]/10 transition-all duration-300"
                         >
                             <span>Explore Services</span>
-                            <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border border-white/10 group-hover:border-[#3898EC] flex items-center justify-center transition-colors duration-300">
-                                <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 group-hover:translate-x-0.5 transition-transform duration-300" />
+                            <div className="w-5 h-5 rounded-full border border-white/10 group-hover:border-[#3898EC] flex items-center justify-center transition-colors duration-300">
+                                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-300" />
                             </div>
                         </motion.a>
+                    </motion.div>
+
+                    {/* Mobile Hero Image - only visible on mobile */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.4, duration: 0.8 }}
+                        className="lg:hidden w-full flex justify-center mt-2 mb-4"
+                    >
+                        <img
+                            src="/hero-candid-photo.png"
+                            alt="Infynix Professional"
+                            className="w-[65%] max-w-[320px] h-auto object-contain drop-shadow-[0_0_30px_rgba(56,152,236,0.2)]"
+                        />
                     </motion.div>
                 </div>
             </div>

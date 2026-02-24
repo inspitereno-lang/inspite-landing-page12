@@ -62,13 +62,13 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className={`transition-all duration-300 bg-white px-3 py-1.5 rounded-xl ${isScrolled ? 'scale-95' : 'scale-105'
+            className={`transition-all duration-300 bg-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg sm:rounded-xl ${isScrolled ? 'scale-95' : 'scale-100'
               }`}
           >
             <img
               src="/infynixbg.png"
               alt="INFYNIX"
-              className="h-14 lg:h-16 object-contain"
+              className="h-9 sm:h-11 lg:h-14 object-contain"
             />
           </Link>
 
