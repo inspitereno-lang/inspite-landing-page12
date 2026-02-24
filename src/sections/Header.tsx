@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,9 +27,25 @@ const Header = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (isHomePage) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/' + href);
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleContactClick = () => {
+    if (isHomePage) {
+      const element = document.querySelector('#contact');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      navigate('/#contact');
     }
     setIsMobileMenuOpen(false);
   };
@@ -39,17 +60,17 @@ const Header = () => {
       >
         <div className="w-full px-6 lg:px-12 flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#"
-            className={`transition-all duration-300 ${isScrolled ? 'scale-90' : 'scale-100'
+          <Link
+            to="/"
+            className={`transition-all duration-300 bg-white px-3 py-1.5 rounded-xl ${isScrolled ? 'scale-95' : 'scale-105'
               }`}
           >
             <img
               src="/infynixbg.png"
               alt="INFYNIX"
-              className="h-10 lg:h-12 object-contain"
+              className="h-14 lg:h-16 object-contain"
             />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
@@ -70,7 +91,7 @@ const Header = () => {
           {/* Right Side */}
           <div className="hidden lg:flex items-center gap-4">
             <Button
-              onClick={() => scrollToSection('#contact')}
+              onClick={handleContactClick}
               className="bg-gradient-to-r from-[#3898EC] to-[#00ffff] text-white hover:opacity-90 transition-all duration-300 magnetic-hover flex items-center gap-2 group px-6"
             >
               Get Started
@@ -97,7 +118,7 @@ const Header = () => {
           <img
             src="/infynixbg.png"
             alt="INFYNIX"
-            className="h-12 object-contain mb-8"
+            className="h-14 object-contain mb-8 bg-white px-4 py-2 rounded-xl"
           />
           {navItems.map((item, index) => (
             <button
@@ -112,7 +133,7 @@ const Header = () => {
             </button>
           ))}
           <Button
-            onClick={() => scrollToSection('#contact')}
+            onClick={handleContactClick}
             className="mt-8 bg-gradient-to-r from-[#3898EC] to-[#00ffff] text-white hover:opacity-90 transition-all duration-300 px-8"
           >
             Get Started

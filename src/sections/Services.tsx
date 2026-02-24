@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { LucideIcon } from 'lucide-react';
@@ -11,11 +12,12 @@ interface ServiceCardProps {
   icon: LucideIcon;
   title: string;
   description: string;
+  slug: string;
   index: number;
 }
 
-const ServiceCard = ({ icon: Icon, title, description, index }: ServiceCardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+const ServiceCard = ({ icon: Icon, title, description, slug, index }: ServiceCardProps) => {
+  const cardRef = useRef<HTMLAnchorElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -40,7 +42,7 @@ const ServiceCard = ({ icon: Icon, title, description, index }: ServiceCardProps
     return () => ctx.revert();
   }, [index]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -49,10 +51,11 @@ const ServiceCard = ({ icon: Icon, title, description, index }: ServiceCardProps
   };
 
   return (
-    <div
+    <Link
+      to={`/services/${slug}`}
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      className="group relative bg-[#0a0f1a]/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 sm:p-10 transition-all duration-500 hover:-translate-y-2 overflow-hidden"
+      className="group relative bg-[#0a0f1a]/80 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 sm:p-10 transition-all duration-500 hover:-translate-y-2 overflow-hidden block"
     >
       {/* Spotlight Effect */}
       <div
@@ -95,7 +98,7 @@ const ServiceCard = ({ icon: Icon, title, description, index }: ServiceCardProps
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -108,31 +111,37 @@ const Services = () => {
     {
       icon: Lightbulb,
       title: 'Application Engineering',
+      slug: 'application-engineering',
       description: 'Architecting resilient, large-scale custom applications with intuitive interfaces and seamless cloud-native integrations.',
     },
     {
       icon: Code2,
       title: 'AI & Machine Learning',
+      slug: 'ai-machine-learning',
       description: 'Deploying sophisticated AI models to automate workflows, uncover deep insights, and build truly intelligent products.',
     },
     {
       icon: Shield,
       title: 'Cloud & Infrastructure',
+      slug: 'cloud-infrastructure',
       description: 'Designing highly secure, scalable, and autonomous cloud environments that guarantee business continuity.',
     },
     {
       icon: Server,
       title: 'Data Architecture',
+      slug: 'data-architecture',
       description: 'Transforming massive, messy data lakes into structured, actionable intelligence hubs using modern data platforms.',
     },
     {
       icon: Palette,
       title: 'Experience Design (UX/UI)',
+      slug: 'experience-design',
       description: 'Fusing deep psychological principles with high-end aesthetic execution to create platform experiences that convert.',
     },
     {
       icon: Blocks,
       title: 'Platform Modernization',
+      slug: 'platform-modernization',
       description: 'Breaking down legacy monoliths into agile, microservice-driven platforms ready for the next decade of scale.',
     },
   ];
@@ -237,6 +246,7 @@ const Services = () => {
                   icon={service.icon}
                   title={service.title}
                   description={service.description}
+                  slug={service.slug}
                   index={index}
                 />
               ))}

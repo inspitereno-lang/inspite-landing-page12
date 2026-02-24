@@ -1,9 +1,6 @@
-import { useEffect, useRef, Suspense, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown, Zap, Globe, Shield } from "lucide-react";
-import { Canvas } from "@react-three/fiber";
-import { Environment, Float, PresentationControls } from "@react-three/drei";
-import Robot from "../Robot";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 /* ─── Animated SVG Curving Lines ─────────────────────────────────────── */
 function FloatingPaths({ position }: { position: number }) {
@@ -123,14 +120,6 @@ function ScrollIndicator() {
 /* ─── Main Component ─────────────────────────────────────────────────── */
 export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: string }) {
     const gridRef = useRef<HTMLDivElement>(null);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
 
     useEffect(() => {
         const handleMouse = (e: MouseEvent) => {
@@ -145,11 +134,7 @@ export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: strin
         return () => window.removeEventListener("mousemove", handleMouse);
     }, []);
 
-    const pills = [
-        { icon: Zap, label: "AI-Powered", color: "#FF7B00" },
-        { icon: Globe, label: "Global Scale", color: "#3898EC" },
-        { icon: Shield, label: "Enterprise Grade", color: "#00D9FF" },
-    ];
+
 
     return (
         <div
@@ -186,76 +171,37 @@ export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: strin
             {/* ── Floating particles ── */}
             <ParticleDots />
 
-            {/* ── 3D Robot Model Container ── */}
+            {/* ── Hero Photo Container ── */}
             <div className="absolute inset-0 z-0 flex flex-col lg:flex-row justify-end lg:justify-end items-center lg:items-center pointer-events-none">
-                <div className="w-full h-[40vh] lg:h-full lg:w-1/2 relative right-0 lg:right-[5%] mt-auto lg:mt-0 pointer-events-auto opacity-0 animate-[scaleIn_1s_ease-out_1s_forwards] translate-y-20 lg:translate-y-0">
-                    <Canvas camera={{ position: [0, 0, 12], fov: 45 }}>
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[10, 10, 5]} intensity={2} color="#ffffff" />
-                        <directionalLight position={[-10, 10, -5]} intensity={1} color="#FF7B00" />
-                        <directionalLight position={[0, -10, 5]} intensity={1} color="#3898EC" />
-
-                        <Suspense fallback={null}>
-                            <PresentationControls
-                                global
-                                rotation={[0.1, -0.5, 0]}
-                                polar={[-0.2, 0.2]}
-                                azimuth={[-0.5, 0.5]}
-                            >
-                                <Float speed={3} rotationIntensity={0.5} floatIntensity={1}>
-                                    <Robot scale={isMobile ? 0.35 : 0.85} position={isMobile ? [0, -0.2, 0] : [0, -0.6, 0]} />
-                                </Float>
-                            </PresentationControls>
-                            <Environment preset="city" />
-                        </Suspense>
-                    </Canvas>
+                <div className="w-full h-[40vh] lg:h-full lg:w-1/2 relative right-0 lg:right-[5%] mt-auto lg:mt-0 pointer-events-auto opacity-0 animate-[scaleIn_1s_ease-out_1s_forwards] translate-y-20 lg:translate-y-0 flex items-center justify-center">
+                    <motion.img
+                        src="/hero-candid-photo.png"
+                        alt="Hero Professional"
+                        className="w-[85%] sm:w-[75%] lg:w-[85%] max-w-[600px] h-auto object-contain drop-shadow-[0_0_40px_rgba(56,152,236,0.3)]"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1, y: [0, -20, 0] }}
+                        transition={{ delay: 0.5, duration: 6, opacity: { duration: 1 }, scale: { duration: 1 }, y: { repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", duration: 8 } }}
+                    />
                 </div>
             </div>
 
             {/* ── Main Content ── */}
             <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-10 flex flex-col justify-start lg:justify-center items-start text-left min-h-screen pt-[12vh] lg:pt-20 pb-16 pointer-events-none">
                 <div className="max-w-[700px] pointer-events-auto flex flex-col items-start text-left">
-                    {/* Feature pills */}
-                    <motion.div
-                        initial={{ y: -15, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ delay: 0.4, duration: 0.7 }}
-                        className="flex flex-wrap justify-start gap-1.5 sm:gap-3 mb-5 sm:mb-10 w-full"
-                    >
-                        {pills.map(({ icon: Icon, label, color }, i) => (
-                            <motion.div
-                                key={label}
-                                initial={{ scale: 0.8, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ delay: 0.5 + i * 0.12 }}
-                                className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1 sm:py-2 rounded-full border backdrop-blur-md"
-                                style={{
-                                    borderColor: `${color}30`,
-                                    backgroundColor: `${color}08`,
-                                }}
-                            >
-                                <Icon className="w-2.5 sm:w-3.5 h-2.5 sm:h-3.5" style={{ color }} />
-                                <span className="text-[9px] sm:text-xs font-medium tracking-wider whitespace-nowrap uppercase" style={{ color }}>
-                                    {label}
-                                </span>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-
                     {/* Main Title */}
                     <div className="mb-4 sm:mb-6 overflow-hidden w-full lg:w-auto">
                         <motion.h1
                             initial={{ y: 80, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[1.75rem] leading-[1.05] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-black tracking-tighter"
+                            className="text-[1.75rem] leading-[1.05] sm:text-6xl md:text-8xl lg:text-[4.8rem] font-black tracking-tighter"
                         >
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70">
-                                {title.split(" ")[0]}
+                                {title.split(" ").slice(0, 2).join(" ")}
                             </span>
                             <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7B00] via-[#FFB366] to-[#FF7B00]">
-                                {title.split(" ").slice(1).join(" ")}
+                                {title.split(" ").slice(2).join(" ")}
                             </span>
                         </motion.h1>
                     </div>
@@ -265,12 +211,9 @@ export function BackgroundPaths({ title = "Infynix Solutions" }: { title?: strin
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.9, duration: 0.9 }}
-                        className="text-[13px] sm:text-xl md:text-2xl text-white/40 max-w-2xl leading-[1.6] font-light mb-8 sm:mb-14 w-full pr-4 sm:pr-0"
+                        className="text-[13px] sm:text-lg md:text-xl text-white/50 max-w-2xl leading-[1.6] font-light mb-8 sm:mb-14 w-full pr-4 sm:pr-0"
                     >
-                        We architect intelligent platforms that transform businesses through
-                        cutting-edge{" "}
-                        <span className="text-[#3898EC] font-normal">AI</span> and advanced{" "}
-                        <span className="text-[#FF7B00] font-normal">system architectures</span>.
+                        We design intelligent digital solutions that reduce manual effort, save time, and help your business run faster and smarter. Bring your vision to life and elevate your business to extraordinary success.
                     </motion.p>
 
                     {/* CTA Buttons */}

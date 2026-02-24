@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronLeft, ChevronRight, Quote, ArrowRight, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -229,18 +229,6 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Global CTA Link */}
-        <div className="mt-24 text-center">
-          <a
-            href="https://inspitetech.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-          >
-            <span className="text-sm font-bold tracking-widest uppercase">Explore all projects</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
-        </div>
       </div>
     </section>
   );

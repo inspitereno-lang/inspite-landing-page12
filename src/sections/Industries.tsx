@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type { LucideIcon } from 'lucide-react';
@@ -17,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 interface Industry {
   icon: LucideIcon;
   name: string;
+  slug: string;
   description: string;
   color: string;
 }
@@ -28,12 +30,12 @@ const Industries = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const industries: Industry[] = [
-    { icon: Heart, name: 'Healthcare', description: 'Digital health solutions for better patient care, telemedicine, and operational efficiency.', color: '#EF4444' },
-    { icon: Landmark, name: 'Finance', description: 'Secure fintech solutions, banking platforms, and fraud detection systems.', color: '#14B8A6' },
-    { icon: ShoppingCart, name: 'Retail', description: 'Omnichannel retail experiences, inventory management, and e-commerce platforms.', color: '#10B981' },
-    { icon: GraduationCap, name: 'Education', description: 'Modern e-learning platforms, student management systems, and virtual classrooms.', color: '#84CC16' },
-    { icon: Server, name: 'Manufacturing', description: 'Smart factory solutions, IoT integration, and industrial automation systems.', color: '#3B82F6' },
-    { icon: Truck, name: 'Transportation', description: 'Fleet management, supply chain optimization, and logistics tracking.', color: '#F59E0B' },
+    { icon: Heart, name: 'Healthcare', slug: 'healthcare', description: 'Digital health solutions for better patient care, telemedicine, and operational efficiency.', color: '#EF4444' },
+    { icon: Landmark, name: 'Finance', slug: 'finance', description: 'Secure fintech solutions, banking platforms, and fraud detection systems.', color: '#14B8A6' },
+    { icon: ShoppingCart, name: 'Retail', slug: 'retail', description: 'Omnichannel retail experiences, inventory management, and e-commerce platforms.', color: '#10B981' },
+    { icon: GraduationCap, name: 'Education', slug: 'education', description: 'Modern e-learning platforms, student management systems, and virtual classrooms.', color: '#84CC16' },
+    { icon: Server, name: 'Manufacturing', slug: 'manufacturing', description: 'Smart factory solutions, IoT integration, and industrial automation systems.', color: '#3B82F6' },
+    { icon: Truck, name: 'Transportation', slug: 'transportation', description: 'Fleet management, supply chain optimization, and logistics tracking.', color: '#F59E0B' },
   ];
 
   useEffect(() => {
@@ -125,9 +127,10 @@ const Industries = () => {
               const isActive = index === activeIndex;
 
               return (
-                <div
+                <Link
+                  to={`/industries/${industry.slug}`}
                   key={industry.name}
-                  className={`group relative bg-[#0a0f1a]/80 backdrop-blur-2xl border rounded-2xl p-6 cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${isActive
+                  className={`group relative bg-[#0a0f1a]/80 backdrop-blur-2xl border rounded-2xl p-6 cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] block ${isActive
                     ? 'border-[#3898EC]/40 ring-1 ring-[#3898EC]/20 shadow-2xl shadow-[#3898EC]/10 -translate-y-2'
                     : 'border-white/5 hover:border-white/20 hover:-translate-y-1'
                     }`}
@@ -173,7 +176,7 @@ const Industries = () => {
                   >
                     <ArrowRight className="w-5 h-5 text-[#3898EC]/70" />
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

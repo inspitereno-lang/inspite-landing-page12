@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Sparkles, Brain, Cpu } from 'lucide-react';
@@ -182,16 +183,15 @@ const AIProductDevelopment = () => {
                 ))}
               </div>
 
-              <a
-                ref={ctaRef}
-                href="#services"
+              <Link
+                to="/ai-product-lab"
                 className="group inline-flex items-center gap-4 text-white hover:text-[#3898EC] transition-colors duration-300"
               >
                 <span className="text-lg font-semibold tracking-wide border-b border-transparent group-hover:border-[#3898EC] transition-colors pb-1">Discover our AI capabilities</span>
                 <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#3898EC] transition-colors">
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                 </div>
-              </a>
+              </Link>
             </div>
 
             {/* Right Image */}

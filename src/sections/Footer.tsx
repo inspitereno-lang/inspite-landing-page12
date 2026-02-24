@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Facebook, Instagram, Linkedin, Youtube, Twitter } from 'lucide-react';
@@ -32,29 +33,29 @@ const Footer = () => {
     return () => ctx.revert();
   }, []);
 
-  const footerLinks = {
-    'Services': [
-      { label: 'AI & Automation', href: '#' },
-      { label: 'Cloud Solutions', href: '#' },
-      { label: 'Web & Mobile Apps', href: '#' },
-      { label: 'Data Engineering', href: '#' },
-      { label: 'UI/UX Design', href: '#' },
-    ],
-    'Industries': [
-      { label: 'HealthTech', href: '#' },
-      { label: 'FinTech', href: '#' },
-      { label: 'E-Commerce', href: '#' },
-      { label: 'EdTech', href: '#' },
-      { label: 'SaaS', href: '#' },
-    ],
-    'Company': [
-      { label: 'About Us', href: '#about' },
-      { label: 'Our Team', href: '#' },
-      { label: 'Careers', href: '#careers' },
-      { label: 'Blog', href: '#' },
-      { label: 'Contact', href: '#contact' },
-    ],
-  };
+  const serviceLinks = [
+    { label: 'Application Engineering', to: '/services/application-engineering' },
+    { label: 'AI & Machine Learning', to: '/services/ai-machine-learning' },
+    { label: 'Cloud & Infrastructure', to: '/services/cloud-infrastructure' },
+    { label: 'Data Architecture', to: '/services/data-architecture' },
+    { label: 'Experience Design', to: '/services/experience-design' },
+    { label: 'Platform Modernization', to: '/services/platform-modernization' },
+  ];
+
+  const industryLinks = [
+    { label: 'Healthcare', to: '/industries/healthcare' },
+    { label: 'Finance', to: '/industries/finance' },
+    { label: 'Retail', to: '/industries/retail' },
+    { label: 'Education', to: '/industries/education' },
+    { label: 'Manufacturing', to: '/industries/manufacturing' },
+    { label: 'Transportation', to: '/industries/transportation' },
+  ];
+
+  const companyLinks = [
+    { label: 'AI Product Lab', to: '/ai-product-lab' },
+    { label: 'About Us', to: '/#about' },
+    { label: 'Contact', to: '/#contact' },
+  ];
 
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
@@ -84,13 +85,13 @@ const Footer = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 mb-8 sm:mb-10 lg:mb-12">
             {/* Logo & Description */}
             <div className="col-span-2 md:col-span-3 lg:col-span-2">
-              <a href="#" className="inline-block mb-3 sm:mb-4">
+              <Link to="/" className="inline-block mb-3 sm:mb-4">
                 <img
                   src="/infynixbg.png"
                   alt="INFYNIX"
                   className="h-10 sm:h-12 object-contain"
                 />
-              </a>
+              </Link>
               <p className="text-gray-400 text-sm mb-4 sm:mb-6 max-w-xs">
                 A next-generation digital transformation company dedicated to
                 reimagining how businesses connect with their customers.
@@ -111,24 +112,56 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Link Columns */}
-            {Object.entries(footerLinks).map(([title, links]) => (
-              <div key={title}>
-                <h4 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">{title}</h4>
-                <ul className="space-y-2 sm:space-y-2.5">
-                  {links.map((link) => (
-                    <li key={link.label}>
-                      <a
-                        href={link.href}
-                        className="text-gray-400 hover:text-white hover:translate-x-0.5 inline-block transition-all duration-300 text-xs sm:text-sm"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {/* Services Column */}
+            <div>
+              <h4 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">Services</h4>
+              <ul className="space-y-2 sm:space-y-2.5">
+                {serviceLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.to}
+                      className="text-gray-400 hover:text-white hover:translate-x-0.5 inline-block transition-all duration-300 text-xs sm:text-sm"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Industries Column */}
+            <div>
+              <h4 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">Industries</h4>
+              <ul className="space-y-2 sm:space-y-2.5">
+                {industryLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.to}
+                      className="text-gray-400 hover:text-white hover:translate-x-0.5 inline-block transition-all duration-300 text-xs sm:text-sm"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company Column */}
+            <div>
+              <h4 className="text-white font-semibold text-sm sm:text-base mb-3 sm:mb-4">Company</h4>
+              <ul className="space-y-2 sm:space-y-2.5">
+                {companyLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.to}
+                      className="text-gray-400 hover:text-white hover:translate-x-0.5 inline-block transition-all duration-300 text-xs sm:text-sm"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* Contact Info */}
